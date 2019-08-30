@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>book-html</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ch:lambda"> Lambda Calculus</h1>
+<h2 id="announcements">Announcements</h2>
+<p>Remember that your homework is due next Tuesday. You also have an small exercise (at the end of the lecture notes). Please write the solution to a paper and bring it to the class with you.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Today we will talk about <span><em>lambda calculus</em></span>. Lambda calculus is tiny calculus that is Turing complete. It is important because it enables us both to write reasonably sophisticated programs and also study about the properties of such programs using mathematics.</p>
+<h2 id="abstract-syntax">Abstract Syntax</h2>
+<p>Let <span class="math inline">\(V\)</span> be a countable set <span class="math inline">\(V\)</span> of variables. We define the abstract syntax for lambda calculus as follows.</p>
+<p><span class="math inline">\({\cal T}\)</span> is the <span><em>least</em></span> set of the terms that satisfy the following.</p>
+<ol>
+<li><p><span>if <span class="math inline">\(x\in V\)</span> then <span class="math inline">\(x\in {\cal T}\)</span></span></p></li>
+<li><p><span>if <span class="math inline">\(t_1\in {\cal T}\)</span> and <span class="math inline">\(t_2\in {\cal T}\)</span> then <span class="math inline">\(t_1t_2\in {\cal T}\)</span></span></p></li>
+<li><p><span>if <span class="math inline">\(x\in V\)</span> and <span class="math inline">\(t\in {\cal T}\)</span> then <span class="math inline">\(\lambda x.t\in {\cal T}\)</span></span></p></li>
+<li><p><span><span class="math inline">\({\cal T}\)</span> is the “least” set verifying the above properties</span></p></li>
+</ol>
+<p>Each term in <span class="math inline">\(\mathcal{T}\)</span>is called a <span><em>lambda term</em></span>. Some examples are <span class="math inline">\(x, \lambda x.x, \lambda x.x~y\)</span>. The term <span class="math inline">\(\lambda x.x\)</span> is also known as <span> <em>(lambda) abstraction</em></span>, and the term <span class="math inline">\(t_1~t_2\)</span> is known as <span> <em>application</em></span>.</p>
+<p>Note that this is the definition of the <span><em>abstract syntax</em></span>. That is, it defines the set of properly parsed terms (<em>i.e.</em>, abstract syntax trees). It does not tell us how to read a lambda term. For example, we can parse <span class="math inline">\(\lambda x. x~y\)</span> as <span class="math inline">\((\lambda x.x~y)\)</span> or <span class="math inline">\((\lambda x. x) y\)</span>. Similarly, we can parse <span class="math inline">\(t_1~t_2~t_3\)</span> as <span class="math inline">\((t_1~t_2)~t_3\)</span> or <span class="math inline">\(t_1~(t_2~t_3)\)</span>.</p>
+<p>We will use parenthesis to aid in parsing (to disambiguate the syntax). To minimize parenthesis, we will have the following conventions:</p>
+<ol>
+<li><p>Application associates to the left.</p></li>
+<li><p>The body of a lambda terms extends as far as right as possible.</p></li>
+</ol>
+<p>With this convention <span class="math inline">\(\lambda x. x~y\)</span> is parsed as <span class="math inline">\(\lambda x. (x~y)\)</span> and <span class="math inline">\(t_1~
+t_2~t_3\)</span> is parsed as <span class="math inline">\((t_1~t_2)~t_3\)</span>.</p>
+<p>We can define the same syntax based on inference rules:</p>
+<p>Given a countable set of variables <span class="math inline">\(V\)</span>, the set of lambda terms is defined as follows.</p>
+<ol>
+<li><p><span><span class="math inline">\(\infer {x\in {\cal T}} {x\in V}\)</span></span></p></li>
+<li><p><span><span class="math inline">\(\infer  {t_1~t_2\in {\cal T}} {t_1\in {\cal T} &amp; t_2\in {\cal T}}\)</span></span></p></li>
+<li><p><span><span class="math inline">\(\infer  {\lambda x.t\in {\cal T}} {x\in V &amp; t\in {\cal T}}\)</span></span></p></li>
+</ol>
+<p>The most succinct definition is the BNF style.</p>
+<p>Assuming that <span class="math inline">\(x\)</span> ranges over a countable set of variables, the set of lambda terms <span class="math inline">\(t\)</span> is defined as follows.</p>
+<p><span class="math display">\[t \mathrel{\colon\colon\mathord{=}}x \mathrel{\mid}t_1 t_2 \mathrel{\mid}\lambda x.t\]</span></p>
+<p>So we have defined the syntax for lambda terms but what do they mean? An intuitive way of thinking of <span class="math inline">\(\lambda x.t\)</span> is as a function that takes <span class="math inline">\(x\)</span> and computes the result in its body <span class="math inline">\(t\)</span>.<br />
+To develop this intuition a bit further let’s abuse our notation a bit. Suppose that our syntax allow us to write natural numbers and add them. For example, we may have terms like this <span class="math inline">\(1, 2, +~1~2\)</span>.</p>
+<p>Now, what does the following lambda terms do?</p>
+<ol>
+<li><p><span class="math inline">\(\lambda x. +~x~1\)</span>,</p></li>
+<li><p><span class="math inline">\(\lambda x. \lambda y. +~x~y\)</span>,</p></li>
+<li><p><span class="math inline">\(\lambda x. \lambda y. \lambda. z.  z (+~x~y)\)</span>.</p></li>
+</ol>
+<h2 id="bound-and-free-variables">Bound and Free Variables</h2>
+<p>A lambda abstraction denotes a function. For example, the abstraction <span class="math inline">\(\lambda x. +~x~1\)</span> denotes a function that takes a parameter, <span class="math inline">\(x\)</span>, and returns the value <span class="math inline">\(x+1\)</span>. The parameter <span class="math inline">\(x\)</span> is called the <span><em>formal parameter</em></span> and we say that <span class="math inline">\(\lambda\)</span> <span><em>binds</em></span> it. In a lambda abstraction, the formal parameter is followed by a “.” and the <span> <em>body</em></span> of the function. A lambda abstraction always consists of the four parts: the <span class="math inline">\(\lambda\)</span>, the formal parameter, the “.”, and the body.</p>
+<p>Consider the lambda abstraction, <span class="math inline">\(\lambda{x}{+~x~y}\)</span>. In order to evaluate the function, for a particular input parameter <span class="math inline">\(x\)</span>, we need to know the value of <span class="math inline">\(y\)</span>. The variable <span class="math inline">\(y\)</span> in this case is free and <span class="math inline">\(x\)</span> is bound; <span class="math inline">\(\lambda\)</span> binds <span class="math inline">\(x\)</span>.</p>
+<p>An occurrence of a variable is <span><em>bound</em></span> if there is an enclosing lambda abstraction that binds the variable, and is <span><em>free</em></span> otherwise.</p>
+<p>Some example lambda abstractions and their bound and free variables.</p>
+<ol>
+<li><p><span class="math inline">\(\lambda x.x\)</span> is the identity function. Here <span class="math inline">\(x\)</span> is a bound variable.</p></li>
+<li><p><span class="math inline">\(\lambda x.y\)</span> is the constant “<span class="math inline">\(y\)</span>” function. Here <span class="math inline">\(y\)</span> is a free variable.</p></li>
+<li><p><span class="math inline">\(\lambda x.x~y\)</span> has <span class="math inline">\(x\)</span> as a bound variable and <span class="math inline">\(y\)</span> as a free variable.</p></li>
+<li><p><span class="math inline">\(\lambda x.(\lambda y.x~y)\)</span> has both variables bound.</p></li>
+<li><p><span class="math inline">\(~x~\lambda x.~+~x~1\)</span>. In this term the first occurrence of <span class="math inline">\(x\)</span> is free and the second is bound.</p></li>
+</ol>
+<p>We define the set of <span><em>free variables</em></span> of a term, <span class="math inline">\(t\)</span>, as the set of variables that occur free in the term and denote it with <span class="math inline">\(FV(t)\)</span>. For example, <span class="math inline">\(FV (+~x~\lambda x.~+~x~1) = \{x\}\)</span>. Formally, we define the set of free variables of a term as follows.</p>
+<p><span id="def:FV" label="def:FV">[def:FV]</span> The set of <span><em>free variables</em></span> of a term <span class="math inline">\(t\)</span> is <span class="math inline">\(FV(t) \subseteq V\)</span> is defined recursively as follows</p>
+<ol>
+<li><p><span>If <span class="math inline">\(x \in V\)</span> then <span class="math inline">\(FV(x) = \{x\}\)</span></span></p></li>
+<li><p><span>If <span class="math inline">\(t_1,t_2 \in {\cal T}\)</span> then <span class="math inline">\(FV(t_1~t_2)=FV(t_1) \cup FV(t_2)\)</span></span></p></li>
+<li><p><span>If <span class="math inline">\(t \in {\cal T}\)</span> and <span class="math inline">\(x \in V\)</span> then <span class="math inline">\(FV(\lambda x.t)=FV(t)\setminus\{x\}\)</span></span></p></li>
+</ol>
+<p>Now that we have a definition of the set of free variables in a term, we can distinguish between two terms such as <span class="math inline">\(\lambda x.x\)</span> and <span class="math inline">\(\lambda x. + x
+y\)</span>.</p>
+<p>A term <span class="math inline">\(t\)</span> is closed if <span class="math inline">\(FV(t) = \varnothing\)</span>. Otherwise <span class="math inline">\(t\)</span> is open.</p>
+<h2 id="sec:substitution">Substitution</h2>
+<p>A lambda abstraction denotes a function. How do we evaluate a function or a lambda abstraction at a particular value? For example, the term <span class="math inline">\((\lambda x.+~1~x)2\)</span> denotes the application of <span class="math inline">\((\lambda x.+~1~x)\)</span> to the parameter <span class="math inline">\(2\)</span>. To evaluate such a term we would like to replace the occurrences of the formal parameter <span class="math inline">\(x\)</span> with the value <span class="math inline">\(2\)</span>. For example, for <span class="math inline">\((\lambda x.+~1~x)~2\)</span> evaluates to <span class="math inline">\((+~1~2)\)</span>. This is an example substitution, where we substitute the value <span class="math inline">\(2\)</span> for the variable <span class="math inline">\(x\)</span> in <span class="math inline">\((\lambda x.+~1~x)\)</span>. Formally, we define substitution as follows.</p>
+<p>The substitution of a term, <span class="math inline">\(t&#39;\)</span> for a variable <span class="math inline">\(x \in V\)</span> in a term <span class="math inline">\(t\)</span>, denoted by <span class="math inline">\([t&#39;/x]t\)</span>, is an instance of <span class="math inline">\(t\)</span> where all the free occurrences <span class="math inline">\(x\)</span> is replaced by the term <span class="math inline">\(t&#39;\)</span>.</p>
+<p>Throughout this course, we will use the notation <span class="math inline">\([t&#39;/x]t\)</span> to denote a substitution of <span class="math inline">\(t&#39;\)</span> for <span class="math inline">\(x\)</span> in <span class="math inline">\(t\)</span>. Different notations are preferred by different textbooks or authors. Two other commonly used notations are <span class="math inline">\(t[t&#39;/x]\)</span> and <span class="math inline">\([x:=t&#39;]t\)</span>. Pierce’s book uses the notation <span class="math inline">\([x \rightarrow t&#39;]t\)</span>.</p>
+<p>Some example substitutions.</p>
+<ol>
+<li><p><span class="math inline">\([\lambda y.y/x] (x~x)= (\lambda y.y)~(\lambda y.y)\)</span></p></li>
+<li><p><span class="math inline">\([\lambda y.y/x] (\lambda x.x) = \lambda x.x\)</span> (<span class="math inline">\(x\)</span> is not free.)</p></li>
+<li><p><span class="math inline">\([y/x](\lambda z.x) = \lambda z.y\)</span></p></li>
+</ol>
+<p>A substitution, as we defined it, is actually “incorrect”. For example, consider the lambda abstraction <span class="math inline">\(\lambda y.x\)</span>, the constant function, and the substitution <span class="math inline">\([y/x](\lambda y.x)\)</span>, which is equal to <span class="math inline">\(\lambda
+y.y\)</span>, the identity function. Thus, the substitution would naively change the constant function into the identity function. Here, the problem is that the variable <span class="math inline">\(x\)</span>, a free variable, is substituted with <span class="math inline">\(y\)</span>, which then becomes bound by the lambda abstraction. In this case, we say that <span class="math inline">\(y\)</span> is <span><em>captured</em></span> in the substitution.</p>
+<p>We do not want to transform free variables into bound variables during the substitution process. We need to redefine substitution to avoid capture. What can we do? Consider the following situation: given a program which has a function that takes a variable <span class="math inline">\(x\)</span> and has a variable <span class="math inline">\(y\)</span> in its body, we can change the name of <span class="math inline">\(y\)</span> to <span class="math inline">\(z\)</span> without any modification of the results, but we cannot change the name of <span class="math inline">\(y\)</span> to <span class="math inline">\(x\)</span> without adversely affecting the results. The next definition avoids capture.</p>
+<p><span id="def:sub" label="def:sub">[def:sub]</span> <span class="math display">\[[t/x]y = \left\{ \begin{array}{ll}
+        t &amp; if~y = x \\
+        y &amp; if~y\neq x \\
+        \end{array} \right.\]</span></p>
+<p><span class="math display">\[[t/x](t_1~t_2) = [t/x]t_1~[t/x]t_2.\]</span></p>
+<p><span class="math display">\[[t&#39;/x](\lambda y.t) = 
+\left\{ \begin{array}{ll}
+
+\lambda y.t &amp;\mbox{if}~ x = y \mbox{ (y is bound)} \\
+
+\lambda y.[t&#39;/x]t &amp;\mbox{if}~ x \neq y \mbox { and } y \not \in FV(t&#39;) \\
+
+\end{array} \right.\]</span></p>
+<p>What does the substitution <span class="math inline">\([\lambda y.x~y~y/z](\lambda x.x~z)\)</span> yield?</p>
+<p>This substitution is undefined.</p>
+<p>How about the substitution <span class="math inline">\([\lambda y.x~y~y/z](\lambda y.y~z)\)</span></p>
+<p><span class="math inline">\(\lambda y.y~(\lambda y.x~y~y)\)</span></p>
+<p>According to this definition a substitution that causes capture is undefined. But something is just not right, because the lambda abstractions <span class="math inline">\(\lambda x.x~z\)</span> and <span class="math inline">\(\lambda y.y~z\)</span> differ only in the name of their bound variables. Lambda abstractions denote functions, thus these two lambda abstractions are the same; it should not matter what the bound variables are named.</p>
+<h2 id="alpha-conversion-and-alpha-equivalence">Alpha Conversion and Alpha Equivalence</h2>
+<p>One way to avoid capture is to rename the bound variables in a lambda abstraction. To goal is to ensure that no bound variable has the same name as a free variable in the term being substituted.</p>
+<p>This process of renaming the bound variables is called <span class="math inline">\(\alpha\)</span>-conversion or <span class="math inline">\(\alpha\)</span>-variation. Two terms that are reducible to each other by <span class="math inline">\(\alpha\)</span>-conversions are <span><em>alpha equivalent</em></span>. We denote <span class="math inline">\(\alpha\)</span>-equivalent terms <span class="math inline">\(t_1\)</span> and <span class="math inline">\(t_2\)</span> as <span class="math inline">\(t_1 ~=_{\alpha}~t_2\)</span>.</p>
+<ol>
+<li><p><span class="math inline">\(\lambda x.x ~=_{\alpha}~\lambda y.y\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda x. \lambda y. \lambda z. x ~y~z ~=_{\alpha}~\lambda z. \lambda y. \lambda x. z~y~x\)</span>.</p></li>
+<li><p><span class="math inline">\(\lambda x.t ~=_{\alpha}~\lambda y.[y/x]t\)</span> if <span class="math inline">\(y \not\in FV(t)\)</span>.</p></li>
+</ol>
+<p>Show that <span class="math inline">\(~=_{\alpha}~\)</span> is an equivalence relation.</p>
+<p>Alpha conversion gives us a way to define substitution without worrying about capture.</p>
+<p><span class="math display">\[[t/x]y = \left\{ \begin{array}{ll}
+        t &amp; if~y = x \\
+        y &amp; if~y\neq x \\
+        \end{array} \right.\]</span></p>
+<p><span class="math display">\[[t/x](t_1~t_2) = [t/x]t_1~[t/x]t_2.\]</span></p>
+<p><span class="math display">\[[t&#39;/x](\lambda y.t)  =
+\left\{ \begin{array}{ll}
+        \lambda y.t&amp;\mbox{if}~x = y \\
+        \lambda z. [t&#39;/x] [z/y] t
+        &amp;\mbox{if}~ x \not= y ~ \land ~ z \not\in FV(t) \cup FV(t&#39;) \\
+       \end{array} \right.\]</span></p>
+<p>The idea of this definition is to rename formal variable of the lambda abstraction so that it does not occur freely in <span class="math inline">\(t&#39;\)</span>. This ensures that no free variables of <span class="math inline">\(t&#39;\)</span> are captured. This is not enough, however, because we also have to make sure that we do not capture the free variables of <span class="math inline">\(t\)</span> itself.</p>
+<p>Note that, in this definition, substitution is a relation not a function. That is the result of a substitution is a set of terms where the renaming take different forms. More precisely, the variable <span class="math inline">\(z\)</span> can take many values (the names of difference variables). All such terms are <span class="math inline">\(\alpha\)</span>-equivalent.</p>
+<p>Now that we made precise the idea of alpha conversion, we can now forget about it. From now on, we will work modulo <span class="math inline">\(\alpha\)</span>-equivalence. That is, we will not distinguish between two terms that are <span class="math inline">\(\alpha\)</span>-equivalent. We can use our old definition, with implicit alpha conversion applied as required.</p>
+<p><span id="def:sub3" label="def:sub3">[def:sub3]</span> <span class="math display">\[[t/x]y = \left\{ \begin{array}{ll}
+        t &amp; if~y = x \\
+        y &amp; if~y\neq x \\
+        \end{array} \right.\]</span></p>
+<p><span class="math display">\[[t/x](t_1~t_2) = [t/x]t_1~[t/x]t_2.\]</span></p>
+<p><span class="math display">\[[t&#39;/x](\lambda y.t) = 
+\left\{ \begin{array}{ll}
+
+\lambda y.t &amp;\mbox{if}~ x = y \mbox{ (y is bound)} \\
+
+\lambda y.[t&#39;/x]t &amp;\mbox{if}~ x \neq y \land y \not \in FV(t&#39;) \\
+
+\end{array} \right.\]</span></p>
+<h2 id="beta-reduction"><span class="math inline">\(\beta\)</span>-reduction</h2>
+<p>In Section <a href="#sec:substitution" data-reference-type="ref" data-reference="sec:substitution">1.5</a>, we briefly discussed how to evaluate a function with a given parameter by substitution. We can give an operational semantics for lambda terms based on substitution. The idea is to take each application and reduce it to another term by applying substitution—this is called <span><em><span class="math inline">\(\beta\)</span> reduction</em></span>, and is denoted <span class="math inline">\(~\rightarrow_{\beta}~\)</span>.</p>
+<p><span class="math display">\[\begin{array}{c}
+(\lambda x.t_1)~t_2 ~\rightarrow_{\beta}~[t_2/x] t_1 \\[4mm]
+\infer{t_1~t_2 ~\rightarrow_{\beta}~t_1&#39;~t_2}{t_1 ~\rightarrow_{\beta}~t&#39;_1}\\[4mm]
+\infer{t_1~t_2 ~\rightarrow_{\beta}~t_1~t&#39;_2}{t_2 ~\rightarrow_{\beta}~t&#39;_2}\\[4mm]
+\infer{\lambda x.t ~\rightarrow_{\beta}~\lambda x.t&#39;} {t ~\rightarrow_{\beta}~t&#39;}
+\end{array}\]</span></p>
+<p>We define multi-step beta reduction, denoted <span class="math inline">\(~\rightarrow_{\beta}^{*}~\)</span>, as <span class="math inline">\(0\)</span> or more applications of single-step beta reduction rules. The use of <span class="math inline">\(*\)</span> to denote reductions suggests their use in Kleene Algebra of Automata Theory.</p>
+<p><span class="math display">\[\begin{array}{c}
+\deduce{} {t ~\rightarrow_{\beta}^{*}~t}\\[4mm]
+\infer{t ~\rightarrow_{\beta}^{*}~t&#39;} {t ~\rightarrow_{\beta}~t&#39;} \\[4mm]
+\infer{t_1 ~\rightarrow_{\beta}^{*}~t_3} {t_1 ~\rightarrow_{\beta}^{*}~t_2 &amp; t_2 ~\rightarrow_{\beta}^{*}~t_3} \\[4mm]
+\end{array}\]</span></p>
+<p>Two terms that are <span class="math inline">\(\beta\)</span>-reducible to each other are called <span class="math inline">\(\beta\)</span>-equivalent, denoted by <span class="math inline">\(~=_{\beta}~\)</span>.</p>
+<p><span class="math display">\[\begin{array}{c}
+\deduce{} {t ~=_{\beta}~t} \\[4mm]
+\infer{t ~=_{\beta}~t&#39;} {t ~\rightarrow_{\beta}~t&#39;}  \\[4mm]
+\infer{t_1 ~=_{\beta}~t_3} {t_1 ~=_{\beta}~t_2 &amp; t_2 ~=_{\beta}~t_3}  \\[4mm]
+\infer{t&#39; ~=_{\beta}~t} {t ~=_{\beta}~t&#39;}
+\end{array}\]</span></p>
+<h3 id="evaluation-strategies">Evaluation Strategies</h3>
+<p>The only means of computing the lambda calculus is beta reduction, i.e., the application of a function to its arguments. In beta reduction, the expression being reduced is called a <span><em>reducible expression or a redex</em></span>. Given a term, we evaluate that term by applying beta reduction to its redexes. There a often multiple redexes in a term, and, in general, we can choose to evaluate any one of them. The following <span><em>evaluation strategies</em></span> have been proposed. As we will see in the rest of the class, there are interesting differences between these strategies in terms of “run-time” behavior of programs.</p>
+<dl>
+<dt>Full beta reduction:</dt>
+<dd><p>Any redex can be reduced at any time.</p>
+</dd>
+<dt>Normal order strategy:</dt>
+<dd><p>The leftmost and outermost redex is reduced next.</p>
+</dd>
+<dt>Call by name strategy:</dt>
+<dd><p>The leftmost and outermost redex is reduced next but no reductions are allowed under abstractions.</p>
+</dd>
+<dt>Call by value:</dt>
+<dd><p>Like call by name but a redex is reduced only when its right hand-side is a value.</p>
+</dd>
+</dl>
+<p>Here is a call-by-value operational semantics for lambda calculus.</p>
+<p><span class="math display">\[\begin{array}{c}
+\infer{t_1~t_1 ~\rightarrow~t_1&#39;~t_2}{t_1 ~\rightarrow~t_1&#39;}\\[2mm]
+\infer{v_1~t_2 ~\rightarrow~v_1~t_2&#39;}{t_2 ~\rightarrow~t_2&#39;}\\
+\infer{(\lambda x.t) v ~\rightarrow~[v/x]~t}{\strut}
+\end{array}\]</span></p>
+<h2 id="homework-exercise">Homework Exercise</h2>
+<p>A term <span class="math inline">\(t\)</span> is in normal form if there is no <span class="math inline">\(t&#39;\)</span> such that <span class="math inline">\(t ~\rightarrow_{\beta}~
+t&#39;\)</span>. We say that a term <span class="math inline">\(t\)</span> is <span><em>normalizable</em></span> if there is some <span class="math inline">\(t&#39;\)</span> such that <span class="math inline">\(t ~\rightarrow_{\beta}^{*}~t&#39;\)</span> and <span class="math inline">\(t&#39;\)</span> is in normal form. Answer the following questions and prove your answer (if your answer is yes, an example suffices).</p>
+<ol>
+<li><p>Are there any normalizable terms?</p></li>
+<li><p>Are there any non-normalizable terms?</p></li>
+</ol>
+</body>
+</html>
