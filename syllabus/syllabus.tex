@@ -1,22 +1,19 @@
 \chapter{Syllabus}
+\label{ch:syllabus}
 
 \section{Course Information}
 
-Welcome to 15-897, Parallelism and Concurrency. 
+Welcome to 15-897, a graduate course on parallelism and concurrency. 
 %
-Parallelism and concurrency play a  fundamental role in computing, especially today, and likely in the future.
+Parallelism and concurrency play a  fundamental role in computing.
 %
-Due to increasing demand in computational resources, many interesting tasks today, ranging from relatively unsophisticated web servers, to complex scientific simulations take advantage of parallelism and concurrency.
+Due to increasing demand in computational resources, many interesting tasks today, ranging from web servers, to scientific simulations exploit parallelism and concurrency.
 %
-This course aims to develop a mathematical foundation upon which parallelism and concurrency may be studied.  
+This course aims to develop a mathematical foundation upon which parallelism and concurrency may be studied and covers a number of fundamental algorithmic and programming techniques.  
 %
  
 \section{Prerequisites}
-There are no specific prerequisites for the course, but this is a graduate course.
-%
-So, graduate-level mathematical reasoning techniques, algorithms, and basic programming skills are assumed.
-%
-Programming skills are perhaps the least important, especially because much of programming experience today is about 1)wasting your time with bugs that a halfway intelligent compiler can identify and 2) twisting your algorithms so as to implement them in impoverished languages.
+There are no specific prerequisites for the course but graduate-level mathematical reasoning techniques, algorithms, and basic programming skills are assumed.
 %
 
 \section{Learning Objectives}
@@ -48,9 +45,9 @@ For example, you can use \defn{Feedback} posts to send feedback about course con
 %
 Feedback posts are designed to be private (and anonymous) only but questions can be both public and private.
 %
-Because this is a graduate course, our goal will be to generate discussions, rather than question-answer dialog.
+Because this is a graduate course, our goal will be to engage in discussions, rather than question-answer dialog.
 %
-In this course, we will therefore only use public \defn{Question} posts for discussions.
+We will therefore only use \emph{public} Question posts for discussions.
 %
 You are welcome to use private Question posts for personal matters, and Feedback posts if you would like to send feedback anonymously. 
 
@@ -66,251 +63,95 @@ But we will create a set of notes via scribing, which we hope will create a blue
 
 \section{Scribing Notes}
 
+We will have a  designated scribe for each lecture.
+%
+The scribe will be responsible for taking notes during lecture and working with me afterwards to make an initial draft ready within one week, and a more polished version in two weeks time.
+%
+To help guide the process, I will try to create an initial outline for each lecture, which I hope will guide the process.
 
-There is no required textbook for the course. The material is fairly diverse, and no standard text contains it. Lecture notes will be provided. Furthermore, the lectures will be recorded and the links to the video recordings as well as the slide handouts will be provided.
+\section{Grading}
+Your grade will depend on 
+\begin{itemize}
+\item attendance and participation in class and on Diderot
+\item fulfillment of scribing responsibilities
+\item assignments 
+\item in class quizzes.
+\end{itemize}
 
-If you want to look at books which contain parts of the course material, we recommend the following:
+\section{Collaboration, Credits, and Citations}
 
-Introduction to the Theory of Computation by Michael Sipser,
 
-The Nature of Computation by Cristopher Moore and Stephan Mertens,
+Collaboration is at the heart of learning.  We therefore encourage you to collaborate with your classmates.
+%
+But there are some limits to collaboration: it should never involve copying actual written material of any sort from another student.
+%
+This means that your collaborations must remain at the level of discussions, drawings, and etc, and you individually must produce your own work.
+%
+If for any piece of work, you have collaborated with others, we ask you to credit them in the a specially designated ``Acknowledgments'' section of your work and describe in specific terms the nature of the collaboration.
 
-Introduction to Theoretical Computer Science by Boaz Barak,
 
-Quantum Computing Since Democritus by Scott Aaronson.
+In addition to personal collaborations, you will also find it useful to read other texts, papers, etc.
+%
+If you have used such an external resource, then please cite the resource and credit  the authors.
+%
+This is important not purely from an academic integrity point of view, but also from a strength point of view, building your work on the work of others only increases their quality, and acknowledging them in the process, makes it possible for others to see and understand the connections, and thus to appreciate your work.
 
- 1
-5  Mentoring System
-You will all be assigned a mentor TA who will most likely be one of your recitation TAs. Your mentor will keep track of your progress and do their best to help you do well in the course. Don’t hesitate to contact your mentor TA about anything related to the course. For instance, you can set up meetings with them to review course material, go over homeworks or exams, or chat about studying strategies.
 
-Throughout the semester, feel free to reach out to anyone on the course staff about anything! Seriously! We are here to help you anyway we can!
 
- 
-6  Grading
-Your grade will depend on the following factors.
-
-Homework There are 10 homework assignments.
-
-Exams There will be two midterm exams, tentatively set for Oct 2 and Nov 6, both starting at 6:30pm. There will be a final exam at the end of the semester during the finals week. All exams are 3 hours long.
-
-Attendance: This is based on attendance in lectures and recitations. Whether attendance is part of your final grade is up to you. We describe the details further down.
-
-Your numerical grade will be calculated according to the following table.
-
-𝐂𝐨𝐮𝐫𝐬𝐞 𝐂𝐨𝐦𝐩𝐨𝐧𝐞𝐧𝐭HomeworkMidterm Exam 1Midterm Exam 2Final ExamRecitation AttendanceLecture Attendance𝐖𝐞𝐢𝐠𝐡𝐭25%20%20%30%2%3%
-
-If you wish, you can choose to have recitation and lecture attendance not count towards your final grade. In this case your grade will be calculated as follows.
-
-𝐂𝐨𝐮𝐫𝐬𝐞 𝐂𝐨𝐦𝐩𝐨𝐧𝐞𝐧𝐭HomeworkMidterm Exam 1Midterm Exam 2Final Exam𝐖𝐞𝐢𝐠𝐡𝐭25%20%20%35%
-
-However, you need to make the decision about how your grade will be calculated at the beginning of the semester (before the second week ends), and your choice will be binding.
-
-Note that the exams may contain material discussed only in lectures and recitations. And what we emphasize in lectures and recitation may not be equally emphasized in the lecture notes. Therefore you are strongly encouraged to pick the first option above.
-
-In order to track attendance, we will be asking poll questions during lectures related to the topics being discussed. We expect everyone to answer all the poll questions on Diderot. We will not check whether your answers are correct. If a lecture contains multiple polls, a random one will be chosen to take attendance. If you experience a technical difficulty that prevents you from participating in a poll, then see the instructor right after lecture so your presence can be noted. If you answer a poll question without being present in the lecture room, it is considered an academic integrity violation.
-
-At mid-semester, letter grade cut-offs will be announced.
-
-The instructors may choose to give up to 2% bonus on your final grade based on exceptional contributions. These contributions can include participation during lectures and recitation (asking/answering questions), asking great questions on Diderot, formulating great answers to other students’ questions, making high quality suggestions/additions for the online notes (this could be in the form of creating original exercise questions, creating visualizations, creating new examples, etc.) Your suggestions may not become part of the original material, but we may still decide that it is worth consideration for bonus points. What deserves bonus points is completely up to the discretion of the instructors.
-
- 
-7  Homework System
-Homework is an extremely important component of the course and is the main tool we use to teach you valuable skills, reinforce key concepts, and help you learn the material.
-
- 1
-General rules
-There are some general rules that apply to all the questions in the homework:
-
-You cannot share written material with anyone.
-
-You cannot discuss solutions to the problems on any discussion forum.
-
-You cannot solicit answers to the homework questions, i.e., you cannot ask anyone to provide you the solution to a problem, before the homework writing session.
-
-Searching the internet for general concepts is allowed. Googling for specific keywords that happen to appear in one of the homework questions is prohibited.
-
-You must always cite your sources including the people you have worked with.
-
-If you work on a publicly visible whiteboard/blackboard, you must erase all contents when you are done.
-
-If you have any doubts about whether something is within the rules or not, do not hesitate to contact the course staff.
-
- 
-Types of questions
-There will be 4 types of questions in the homework and each question will be clearly labeled with its type.
-
-SOLO - You must work on these questions by yourself. In addition to the rules mentioned above, you are not allowed to discuss these questions with anyone except for the course staff.
-
-GROUP - These questions must be solved in groups of 3 or 4. Working on these questions just by yourself is not allowed! You must clearly indicate your group members. You can change your group from week to week, but you can have at most one group per week. Other than your group members, you may discuss these questions with the course staff.
-
-OPEN COLLABORATION - You can discuss these questions with anyone you like from class (i.e., other students currently taking the course and the course staff). Other than the general rules stated above, there are no additional rules for this type of question.
-
-PROGRAMMING - Not all homework assignments will contain a programming question, but some might. The SOLO rules apply to these types of questions. You must submit your programs to Diderot by 6:30pm the day the homework is due.
-
-A homework assignment for a particular week will usually contain SOLO and/or PROGRAMMING type questions covering the current week’s material, plus, GROUP and/or OPEN type questions covering the previous week’s material. This has a couple of benefits. First, you’ll solve problems on a topic for two weeks rather than one, which helps with retention. Second, after solving the easier solo questions, you will be much better prepared to solve the harder collaborative questions.
-
- 
-Homework writing sessions
-You will not hand in written up solutions to every question of the homework. Every Wednesday from 6:30pm to 7:50pm at DH 2210, we will have a homework writing session. We will randomly pick a subset of the homework questions (usually 3 questions are picked), and you will be required to write the solutions to those problems individually during this proctored setting. We expect that you will have already practiced writing down the solution to every question in the homework prior to Wednesday night. Therefore these homework writing sessions should be relatively straightforward and stress-free.
-
- 
-Homework grading
-After the homework writing session, you will get back your graded homework the following recitation. You will know who graded which question. Whenever there is a point deduction on your homework, an explanation should be given, but if you do not understand why you lost points, please don’t hesitate to contact us so we can clarify things for you.
-
-Grading proofs is a complicated process. We try our best to be as fair and as consistent as possible. However, mistakes will happen from time to time. Therefore we have a system in place that makes grading a two-step process. The first step is that we read your solutions and assign an initial grade based on the rubric. The second step is that you carefully review your solution and the feedback, and if you have any disagreement with the number of points you got, you email the TA who graded that question. If there was a mistake, we’ll correct it. If you cannot resolve the situation with the TA who graded the question, email one of the head TAs to get a second opinion. If you are still not satisfied, email one of the instructors.
-
-Note that your grade can never go down as a result of a regrade request; it can only go up.
-
-The deadline for homework regrade request is Wednesday 6:30pm (one week after the corresponding homework writing session). Email your request to the TA who graded the question.
-
-Your lowest 3 homework problem scores will be dropped when calculating your homework average.
-
- 
-Homework resubmission
-It is very important that you learn from your mistakes and correct them. For this reason, after you get your graded homework back, you will be allowed to resubmit up to 2 solutions that you have gotten wrong. You may (and should) go to the homework solution sessions (see below for details) or ask about the solution during office hours. If you turn in a completely correct and well-written solution, you will receive back 50 percent of the lost credit for that question. If on the other hand your solution is not near-perfect, then unfortunately you will not receive any points back.
-
-The deadline for homework solution resubmission is Sunday 6:30pm (11 days after the corresponding homework writing session). Email your resubmission, along with your original solution, to the TA who graded that question.
-
- 
-Proof-writing guidelines
-The quality of your write-up and presentation matters a lot, so you should make sure your solutions are very clearly explained. If you are not sure of something, or you think there is a gap in your argument, clearly indicate these in your write-up (you will earn more points doing so rather than writing a wrong argument!!). Do not try to sell a wrong or incomplete proof! If you leave a question completely blank, you will earn 20 percent of the credit for that question.
-
-To help you write correct and clear proofs, we have prepared a document with a list of guideline points. The guideline points will appear as a checklist in each homework. For each proof you write, tick the checklist items to acknowledge that you are following the guidelines.
-
- 
-Homework solution sessions
-Unfortunately, we will not be publishing written solutions to the homework problems. The main reason is that any homework solution we post kills the question for future semesters of the course (and any other course that might be using a similar question). Most questions we ask are pedagogically very valuable, and coming up with such questions is very hard. So we don’t want to kill those questions by publishing solutions. That being said, we don’t keep the solutions a secret either. We hold homework solution sessions twice a week and go over the solutions (on the blackboard) to the problems that appeared in the writing session. We are also always happy to go through the solutions to any problem with you during office hours.
-
-Note that during the solutions sessions, we will not write the full proof on the blackboard. We expect you to fill in the details yourself.
-
-The times and locations of the homework solution sessions will be announced at the beginning of the semester.
-
- 
-8  Recitation System
-The recitation sections that you have signed up for on SIO will only be used for the first week of the course. Starting week 2, we will transition to a different system.
-
-One of the main advantages of recitations over lectures is that the sections are much smaller in size. In order to improve the student-TA ratio and give you more flexibility, we will be asking you the times you are available on Fridays and Saturdays. Based on that information, we will assign you to a recitation slot. And a typical recitation section will have about 12 students.
-
-In addition to the above change, we will offer 3 different spiciness levels for recitations. You will select yourself which level is appropriate for you. During the semester if you feel like you would like to switch to another level, let us know, and we’ll arrange the switch.
-
-Bell pepper Not spicy. We will go over the definitions to make sure everyone understands them fully. Then we will solve the problems together (as many as the time allows).
-
-Jalapeño pepper Normal spicy. After a quick review of definitions, we’ll solve the problems together. These sections will have a faster pace.
-
-Habanero pepper Hot! We’ll assume you are comfortable with everything covered in lecture and notes, so we’ll directly dive into the problems. These sections will have the fastest pace.
-
- 3
-9  Asking Questions
-Even though we are always ready to help and provide support anyway we can, there is a fine balance that we have to respect. Ultimately, we would like you to develop the necessary skills to be self-sufficient problem solvers. You will have many questions throughout the semester. Reflecting on your questions to try to figure out the answers on your own is extremely valuable, and we want to make sure that you are not robbed of this experience. Here are some general guidelines for asking questions.
-
-The general rule of thumb is the following. Before you ask a question to us, ask yourself whether you can figure out the answer yourself. If the answer is “yes” or “maybe”, then you should give a solid effort in trying to find the answer. This is an extremely valuable learning experience.
-
-Whenever you ask a question, first tell us what your own thoughts about the question are and what you have tried. If you don’t, then we will usually respond to your question with another question asking you what your thoughts are. When you explain your thoughts to us, this allows us to see and fix any misunderstanding and help you more effectively.
-
-If a homework problem is ambiguous to you, try to figure out all the possible interpretations and evaluate them one by one. Often, you’ll find that there is really one interpretation that makes sense.
-
-Try not to turn a conversation with a course staff member into the Twenty Questions game. This does not maximize your learning outcomes. Remember that when a question formulates in your mind, the first person who should try to answer it is you. Our role is to help you when you are stuck.
-
-Certain discussions are best suited for your group. For example, if you want to bounce off ideas and get some feedback on your thought process for a GROUP or OPEN problem on the homework, you should have that conversation with your group members.
-
-Please do not ask us to read your solution write-up and give you feedback on how many points you would get. Solutions can have subtle bugs, and we cannot always spot such bugs after a quick glance. Properly reading and evaluating a solution can take a lot of time. That being said, even though we cannot read your solution in detail before the homework writing session, we are happy to listen to your overall proof strategy and help you try to figure out if there are any logical flaws or gaps.
-
-Diderot is a good resource for short-answer questions, but can be extremely inefficient for long-answer questions or questions that may require a back and forth conversation. When you want to ask a question on Diderot, consider whether the question is suitable for that platform, and if it is not, ask your question during office hours for a more useful and efficient conversation.
-
-Diderot allows you to post your questions anonymously. However, we strongly discourage you from doing so. If you are not comfortable asking questions in front of others, take this as an opportunity to learn this valuable skill. This is a skill that will serve you well for the rest of your life. And it is much more important than any technical content you’ll learn in this or any other course.
-
- 
-10  Use of Electronic Devices
-The use of electronic devices like phones, tablets, and laptops during lectures and recitations is prohibited. These devices cause distractions both to you and the people around you. If you would like to use an electronic device to take notes and using paper and pencil is not a good option for you, please contact one of the instructors.
-
-There is an exception to the above rule. When we open up a poll during a lecture, you are allowed to use your phone to cast your vote. Once the poll is completed, you should put away your phone. If you do not have a smart phone, please contact one of the instructors.
-
- 1 
-11  Academic Integrity
+\section{Academic Integrity}
 We take academic integrity very seriously and will do our best to make the course fair for everyone. As a part of the first homework, you will be required to acknowledge that you have read and understood the cheating policies. Please read Carnegie Mellon University Policy on Academic Integrity. The following are some clear examples of cheating:
 
-Copying from another student during an exam or homework writing session.
+\begin{itemize}
 
-Discussing a SOLO problem before the homework writing session with someone who is not a part of the course staff.
+\item Copying (partially or wholly) material from another student, e.g., an exam, or in an assignment.
 
-Googling for specific keywords that happen to appear in one of the homework questions.
+\item Sharing your written work, at any stage of completion, with another student.
 
-Showing a draft of a written solution to another student.
+\item Not crediting help received.
 
-Getting help from someone who you do not acknowledge on your solution.
+\item Not citing related works that you have borrowed from.
+\end{itemize}
 
-Receiving exam related information from a student who has already taken the exam.
+\section{Accommodations and Make-Up Policy}
 
-Attempting to hack any part of the 15-251 infrastructure.
+\begin{gram}
+Please contact the instructor if you have an  approved accommodations from the Disability Resources Center. 
 
-Looking at someone else’s work on AFS, even if the file permissions allow it.
+No make-up quizzes, exams, or assignments will be administered, except in the case of documented medical or family emergencies, or other university approved absences. The common cold and other illnesses that does not require hospitalization, unfortunately, do not qualify as an excused absence.
 
-Lying to the course staff.
-
-Sharing the course material online (even if the semester is over).
-
-The penalty for cheating usually ranges from a letter grade drop to receiving an R. Furthermore, in most cases, a letter to the Dean of Student Affairs is sent and further consequences are determined by them. Of course we hope that no one will suffer these consequences. If you ever find yourself in a situation where you are thinking about a potential academic integrity violation, please reach out to us. Tell us how you are struggling. Tell us if you need more time or if you need more help. Together we’ll find a good path for you no matter what the situation is.
-
+Please make a note of the important dates and do not schedule events such as interviews during those times. We will not administer a make-up exam because it clashes with an interview. Companies should respect your exam schedules and give you various options for interview dates.
+\end{gram}
  
-12  Accommodations and Make-Up Policy
-We are happy to provide appropriate accommodations to students who have approval from the Disability Resources Center. Please contact one of the instructors if you are in this situation.
+\section{Well-Being and Happiness}
+\begin{gram}
+We care about you and  your happiness! Be aware that everyone on the course staff is always available to provide counsel or to talk and do not hesitate to approach them.
 
-No make-up quizzes, exams, or homework writing sessions will be administered, except in the case of documented medical or family emergencies, or other university approved absences. The common cold or your computer crashing, unfortunately, do not qualify as an excused absence.
+Also be aware that the university provides
+%
+\href{https://www.cmu.edu/counseling/resources/index.html}{many services},
+%
+including professional counseling services. 
 
-Please make a note of the exam dates and do not schedule events (like interviews) during those times. We will not administer a make-up exam because it clashes with an interview. Companies should respect your exam schedules and give you various options for interview dates.
 
+\href{http://www.cmu.edu/counseling/}{CAPS}
+%
+offers many services including therapy and crisis management. 
+%
+Please feel free to reach out to CAPS for counseling if you feel that you are experiencing difficulties.
+%
+Keep in mind that your problems may appear smaller to you than they actually are and that they have the resources to help in many ways.
+yes
  
-13  Well-Being and Happiness
-We very much care about your well-being and happiness! Be aware that everyone on the course staff is always available to provide counsel or chat, and you should attend office hours as often as you want for academic and non-academic conversation.
+\end{gram}
 
-However, also know that the university provides services that you may want to take advantage of at some point during the semester. If you are ever unsure about them, run into a problem, or want more information, feel free to reach out to the instructors.
+\section{Safety}
 
-For a comprehensive list of CMU’s resources, please click here.
-
+Do not hesitate to call 
+%
+\href{http://www.cmu.edu/police/welcome.html}{CMU police}
+%
+in emergency situations or for other services that they provide.
+%
+CMU police can also be reached at 412-268-2323.
+%
  
-CMU Police Department
-Do not hesitate to call CMU police when in an emergency or if you are interested in taking advantage of their services.
-
-Website: http://www.cmu.edu/police/welcome.html
-
-Emergency phone number: 412-268-2323
-
-Non-Emergency phone number: 412-268-6232
-
- 
-Counseling and Psychological Services (CAPS)
-CAPS offer therapy, crisis support, etc. and you should reach out to CAPS for counseling if you are struggling, no matter how small you may think your problems are. If CAPS can’t help you appropriately, they also do referrals and basic consultations to help you find what you need.
-
-Website: http://www.cmu.edu/counseling/
-
-Hours: Monday through Friday 8:30am-5:00pm
-
-Phone number: 412-268-2922
-
-Location: 2nd floor, Morewood Gardens, E-Tower
-
- 
-University Health Services (UHS)
-Health services can help you in the same way a doctor does but they also offer comprehensive care management and health promotion services.
-
-Website: http://www.cmu.edu/health-services/
-
-Hours: M, Tu, W: 8:30am-7:00pm, Th: 10:00am-7:00pm, F: 8:30am-5:00pm, Sat: 11:00am-3:00pm
-
-Note: When UHS is closed, call 1(844)881-7176.
-
-To set up an appointment on HealthConnect, click here.
-
-Comprehensive Care Manager: Diane Dawson, 412-268-9171
-
- 
-15-251 Wellness Help
-If you find yourself struggling in any way or simply would like to discuss how you are feeling about 251 or just chat, reach out to one of the following people or your mentor TA to set up a casual meeting.
-
-Anıl Ada (Instructor): aada@cs.cmu.edu
-
-Ariel Procaccia (Instructor): arielpro@cs.cmu.edu
-
-Jacqueline Fashimpaur (Head TA): jfashimp@andrew.cmu.edu
-
-Kabir Peshawaria (Head TA): kpeshawa@andrew.cmu.edu

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  30 AUG 2019 09:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  30 AUG 2019 13:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -627,8 +627,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 ) (./templates/preamble.tex)
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... none found.
-
-No file book.aux.
+ (./book.aux
+(./syllabus/syllabus.aux))
 \openout1 = `book.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
@@ -646,6 +646,7 @@ LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
 LaTeX Font Info:    ... okay on input line 17.
 LaTeX Font Info:    Try loading font information for OT1+ppl on input line 17.
+
 (/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
@@ -726,31 +727,86 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 17.
 LaTeX Info: Redefining \pageref on input line 17.
 LaTeX Info: Redefining \nameref on input line 17.
+
+(./book.out) (./book.out)
 \@outlinefile=\write4
 \openout4 = `book.out'.
 
+\openout2 = `syllabus/syllabus.aux'.
 
-! I can't write on file `lambda/lambda.aux'.
-\@include ...\immediate \openout \@partaux #1.aux 
-                                                  \immediate \write \@partau...
-l.19 \include{lambda/lambda}
-                            
-(Press Enter to retry, or Control-D to exit; default file extension is `.tex')
-Please type another output file name: 
-! Emergency stop.
-\@include ...\immediate \openout \@partaux #1.aux 
-                                                  \immediate \write \@partau...
-l.19 \include{lambda/lambda}
-                            
-End of file on the terminal!
+ (./syllabus/syllabus.tex
+Chapter 1.
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <20.74> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <24.88> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 3.
 
- 
+Overfull \hbox (0.95049pt too wide) in paragraph at lines 15--21
+\OT1/ppl/m/n/10 There are no spe-cific pre-req-ui-sites for the course, but thi
+s is a grad-u-ate course. So, graduate-
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 28.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/psnfss/omsppl.fd
+File: omsppl.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 28.
+ [1
+
+
+
+{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 45.
+LaTeX Font Info:    Font shape `OT1/ppl/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ppl/b/it' tried instead on input line 45.
+ [2] [3]
+
+LaTeX Warning: Hyper reference `https://www.cmu.edu/counseling/resources/index.
+html' on page 4 undefined on input line 132.
+
+
+LaTeX Warning: Hyper reference `http://www.cmu.edu/counseling/' on page 4 undef
+ined on input line 137.
+
+
+LaTeX Warning: Hyper reference `http://www.cmu.edu/police/welcome.html' on page
+ 4 undefined on input line 150.
+
+) [4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 21.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 21.
+ (./book.aux (./syllabus/syllabus.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 21.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 21.
+Package rerunfilecheck Info: File `book.out' has not changed.
+(rerunfilecheck)             Checksum: 35C0BC0C66ADA64AC46D3CE6DE14A5C2;807.
+
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 17114 strings out of 492995
- 291756 string characters out of 6132704
- 379009 words of memory out of 5000000
- 20499 multiletter control sequences out of 15000+600000
- 4757 words of font info for 17 fonts, out of 8000000 for 9000
+ 17214 strings out of 492995
+ 293132 string characters out of 6132704
+ 383528 words of memory out of 5000000
+ 20553 multiletter control sequences out of 15000+600000
+ 11898 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,1n,37p,10360b,275s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 42i,5n,37p,10360b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
+xlive/2017/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2
+017/texmf-dist/fonts/type1/urw/palatino/uplbi8a.pfb></usr/local/texlive/2017/te
+xmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2017/texmf-dis
+t/fonts/type1/urw/palatino/uplr8a.pfb>
+Output written on book.pdf (4 pages, 80686 bytes).
+PDF statistics:
+ 102 PDF objects out of 1000 (max. 8388607)
+ 90 compressed objects within 1 object stream
+ 18 named destinations out of 1000 (max. 500000)
+ 105 words of extra memory for PDF output out of 10000 (max. 10000000)
+
