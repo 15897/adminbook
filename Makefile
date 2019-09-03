@@ -9,7 +9,7 @@ DC_HOME = ~/DC
 #DC_HOME = ../main-s19/DC/bin
 
 LABELTEX = $(DC_HOME)/texel
-TEX2XML = $(DC_HOME)/dc -meta ../meta
+TEX2XML = $(DC_HOME)/dc -meta ./meta
 TEX2XMLDBG = $(DC_HOME)/dc.dbg
 
 default: pdf
